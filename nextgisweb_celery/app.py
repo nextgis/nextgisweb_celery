@@ -66,6 +66,9 @@ def on_preload_parsed(options, **kwargs):
     if ngw_config is None:
         print('You must provide --ngw-config argument')
         exit(-1)
+    else:
+        print('Using ngw config file: %s' % ngw_config)
 
     env = init_ngw(ngw_config)
+    print('Using celery config file: %s' % env.celery.settings[SETTINGS_CONF_NAME])
     setup_app(env.celery.settings[SETTINGS_CONF_NAME])
